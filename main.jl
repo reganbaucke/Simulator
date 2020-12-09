@@ -11,7 +11,7 @@ function my_initial_state()
 end
 
 #
-# Define a generic policy (possibly bad) to govern the operations of the plant.
+# Define a generic policy (possibly bad) to govern the operations of the plant, this policy has a time resolution of 5 minutes
 # 
 # This policy has three parts:
 #     for all pasturisers, transition them out of their current state if imposed by the rules e.g. if a pasturiser has been in cleaning for 3 hours, move to off state
@@ -39,13 +39,13 @@ function my_factory_policy(plant)
    # add time to the plant
    final_pas = map(x -> add_duration(5.0,x),acted_pas)
 
-   #return new plant state, with new silo level
+   #return new plant state, with new silo level, and move forward in time 5 minutes
    (Plant(silo_level(plant.silo, final_pas), final_pas), 5.0)
 end
 
 
 # simulate the plant from its initial state using the above policy for 240 minutes
-my_simulation = build_discrete_system(my_factory_policy, my_initial_state(),0.0,700)
+my_simulation = build_discrete_system(my_factory_policy, my_initial_state(),0.0,240)
 
 
 # with this my simulation object (just an array of states and times) we would be able to ask certain questions about it
