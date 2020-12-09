@@ -43,6 +43,8 @@ function production_rate(bank)
 end
 
 
+# calculate a silo a new silo level based on the old one and the
+# new production rate
 function silo_level(old,bank)
    old + (production_rate(bank)-100.0)/12.0
 end
@@ -86,7 +88,6 @@ function transition_from_on(pasturiser)
    end
 end
 transition = transition_from_booting ∘ transition_from_cleaning ∘ transition_from_on
-
 
 # Add some running time to pasturisers
 function add_duration(time,pasturiser)
