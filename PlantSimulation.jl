@@ -93,4 +93,6 @@ function add_duration(time,pasturiser)
    Pasturiser(pasturiser.status,pasturiser.time + time)
 end
 
+export Pasturiser, Plant, transition, boot_up, turn_on, clean, production_rate, silo_level, turn_on_first_available, add_duration
+
 end
